@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Gym Week Schedule</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <nav class="menu">
+    <button onclick="showSection('schedule')"><i class="fa-solid fa-calendar-days"></i> Schedule</button>
+    <button onclick="showSection('history')"><i class="fa-solid fa-clock-rotate-left"></i> History</button>
+    <button onclick="showSection('timer')"><i class="fa-solid fa-hourglass-end"></i> Timer</button>
+  </nav>
+
+  <main>
+    <section id="schedule" class="active">
+      <h1>My Gym Week</h1>
+      <div class="days">
+        <!-- Day 1 -->
+        <div class="day" style="border-left: 5px solid #ff6b6b;">
+          <h2><i class="fa-solid fa-fire"></i> Day 1</h2>
+          <ul>
+            <li><i class="fa-solid fa-dumbbell"></i> Chest (3 exercises)</li>
+            <li><i class="fa-solid fa-dumbbell"></i> Shoulders (1 exercise)</li>
+            <li><i class="fa-solid fa-dumbbell"></i> Triceps (2 exercises)</li>
+            <li><i class="fa-solid fa-dumbbell"></i> Forearm (1 exercise)</li>
+          </ul>
+          <button class="done-btn" onclick="saveHistory('Day 1')">Done</button>
+        </div>
+        <!-- Day 2 -->
+        <div class="day" style="border-left: 5px solid #4ecdc4;">
+          <h2><i class="fa-solid fa-person-running"></i> Day 2</h2>
+          <ul>
+            <li><i class="fa-solid fa-dumbbell"></i> Quads (2-3 exercises)</li>
+            <li><i class="fa-solid fa-dumbbell"></i> Hamstrings (1 exercise)</li>
+            <li><i class="fa-solid fa-dumbbell"></i> Calves (1 exercise)</li>
+            <li><i class="fa-solid fa-dumbbell"></i> Abs (2 exercises)</li>
+          </ul>
+          <button class="done-btn" onclick="saveHistory('Day 2')">Done</button>
+        </div>
+        <!-- Day 3 -->
+        <div class="day" style="border-left: 5px solid #ffe66d;">
+          <h2><i class="fa-solid fa-arrow-up-wide-short"></i> Day 3</h2>
+          <ul>
+            <li><i class="fa-solid fa-dumbbell"></i> Pulling (1-2 exercises)</li>
+            <li><i class="fa-solid fa-dumbbell"></i> Rowing (1-2 exercises)</li>
+            <li><i class="fa-solid fa-dumbbell"></i> Biceps (2 exercises)</li>
+            <li><i class="fa-solid fa-dumbbell"></i> Forearm (1-2 exercises)</li>
+          </ul>
+          <button class="done-btn" onclick="saveHistory('Day 3')">Done</button>
+        </div>
+        <!-- Day 4 -->
+        <div class="day" style="border-left: 5px solid #1a535c;">
+          <h2><i class="fa-solid fa-person-walking"></i> Day 4</h2>
+          <ul>
+            <li><i class="fa-solid fa-dumbbell"></i> Hamstrings (2 exercises)</li>
+            <li><i class="fa-solid fa-dumbbell"></i> Abs (1-2 exercises)</li>
+            <li><i class="fa-solid fa-dumbbell"></i> Lår insida/utsida (1 exercise)</li>
+            <li><i class="fa-solid fa-dumbbell"></i> Quads (1 exercise)</li>
+          </ul>
+          <button class="done-btn" onclick="saveHistory('Day 4')">Done</button>
+        </div>
+        <!-- Day 5 -->
+        <div class="day" style="border-left: 5px solid #ffb400;">
+          <h2><i class="fa-solid fa-bolt"></i> Day 5</h2>
+          <ul>
+            <li><i class="fa-solid fa-dumbbell"></i> Chest (1 exercise)</li>
+            <li><i class="fa-solid fa-dumbbell"></i> Shoulders (1-2 exercises)</li>
+            <li><i class="fa-solid fa-dumbbell"></i> Back (1 exercise)</li>
+            <li><i class="fa-solid fa-dumbbell"></i> Biceps (1 exercise)</li>
+            <li><i class="fa-solid fa-dumbbell"></i> Triceps (1 exercise)</li>
+          </ul>
+          <button class="done-btn" onclick="saveHistory('Day 5')">Done</button>
+        </div>
+        <!-- Rest Days -->
+        <div class="day rest">
+          <h2><i class="fa-solid fa-bed"></i> Rest</h2>
+          <p>Rest and recover!</p>
+        </div>
+      </div>
+    </section>
+    <section id="history">
+  <h1>Training History</h1>
+   
+    <ul id="history-list"></ul>
+    <button id="reset-history-btn" class="reset-btn"><i class="fa-solid fa-trash"></i> All Reset Training History</button>
+    </div>
+        <div class="upload-photo">
+      <label for="photo-input">
+        <i class="fa-solid fa-camera"></i> Add Gym Photo
+      </label>
+      <input type="file" id="photo-input" accept="image/*" style="display:none" multiple>
+      <div id="photo-gallery"></div>
+      <button id="view-more-btn" style="display:none"></button>
+    </div>
+    <div id="photo-modal" class="modal" style="display:none;">
+      <span class="close" id="close-modal">&times;</span>
+      <img class="modal-content" id="modal-img">
+    </div>
+  </section>
+
+    <section id="timer">
+      <h1>Timer Training</h1>
+        <div class="timer-section">
+    <div id="timer-circle">
+      <span id="timer-display">00:00:00</span>
+    </div>
+    <div class="timer-btns">
+      <button id="start-timer-btn" class="circle-btn"><i class="fa-solid fa-play"></i></button>
+      <button id="stop-timer-btn" class="circle-btn" style="display:none;"><i class="fa-solid fa-stop"></i></button>
+      <button id="manual-timer-btn" class="circle-btn"><i class="fa-solid fa-pen"></i></button>
+    </div>
+    <div class="manual-time-row" style="display:none;">
+      <input type="number" id="manual-minutes" min="1" max="999" placeholder="Minutes">
+      <button id="save-manual-btn" class="circle-btn"><i class="fa-solid fa-save"></i></button>
+    </div>
+  </div>
+
+  <ul id="timer-history-list"></ul>
+  <button id="view-more-timer-btn" style="display:none"></button>
+
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 My Gym Week. All rights reserved. Made by Mostafa Albaghdadi</p>
+  </footer>
+  <script src="main.js"></script>
+</body>
+</html>
